@@ -69,7 +69,17 @@ public sealed class ClaudeClient(
             - Do not invent issues.
             - Be concise and technical.
             - Findings must be actionable.
+            - Do not exaggerate minor style preferences as serious issues.
+            - Distinguish between real bugs, security risks, performance problems, and optional improvements.
+            - For performance findings, only report issues that have meaningful performance impact.
             - Scores must be between 1 and 10.
+
+            Scoring:
+            - 9-10: Excellent, only minor optional improvements.
+            - 7-8: Good, no major issues.
+            - 5-6: Works but has noticeable maintainability or design issues.
+            - 3-4: Serious problems.
+            - 1-2: Critical security, correctness, or reliability issues.
             """,
 
             tools = new[]

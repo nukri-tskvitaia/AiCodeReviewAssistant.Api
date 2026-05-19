@@ -1,5 +1,7 @@
+using AiCodeReviewAssistant.Api.Interfaces;
 using AiCodeReviewAssistant.Api.Options;
 using AiCodeReviewAssistant.Api.Services;
+using AiCodeReviewAssistant.Api.Services.Reviewers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,11 @@ builder.Services
     .ValidateOnStart();
 
 builder.Services.AddHttpClient<ClaudeClient>();
+
+builder.Services.AddScoped<ICodeReviewer, SecurityCodeReviewer>();
+builder.Services.AddScoped<ICodeReviewer, PerformanceCodeReviewer>();
+builder.Services.AddScoped<ICodeReviewer, CleanCodeReviewer>();
+
 builder.Services.AddScoped<CodeReviewOrchestrator>();
 
 var app = builder.Build();

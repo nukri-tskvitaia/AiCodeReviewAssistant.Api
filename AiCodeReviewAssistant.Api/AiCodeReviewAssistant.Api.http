@@ -1,6 +1,6 @@
 @AiCodeReviewAssistant.Api_HostAddress = http://localhost:5261
 
-POST {{AiCodeReviewAssistant.Api_HostAddress}}/api/
+POST {{AiCodeReviewAssistant.Api_HostAddress}}/api/code-reviews/analyze
 Accept: application/json
 
 ###

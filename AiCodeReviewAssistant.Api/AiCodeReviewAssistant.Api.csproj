@@ -12,12 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Validation\" />
     <Folder Include="Prompts\" />
-    <Folder Include="Options\" />
     <Folder Include="Services\Reviewers\" />
   </ItemGroup>
 

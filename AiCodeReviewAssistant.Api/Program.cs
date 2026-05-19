@@ -1,11 +1,22 @@
+using AiCodeReviewAssistant.Api.Options;
+using AiCodeReviewAssistant.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services
+    .AddOptions<ClaudeOptions>()
+    .Bind(builder.Configuration.GetSection(ClaudeOptions.SectionName))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+builder.Services.AddHttpClient<ClaudeClient>();
+builder.Services.AddScoped<CodeReviewOrchestrator>();
 
 var app = builder.Build();
 

@@ -250,8 +250,8 @@ public sealed class ClaudeClient(
     {
         return new
         {
-            model = _options.Model,
-            max_tokens = _options.MaxTokens,
+            model = _options.Model, // claude-sonnet-4-6
+            max_tokens = 2000,
             temperature = _options.Temperature,
 
             system = """
@@ -262,18 +262,18 @@ public sealed class ClaudeClient(
             Rules:
             - Keep the original reviewer results unchanged.
             - Create a concise final summary.
-            - Recommended actions must be actual actions, not copied findings.
-            - Do not include positive findings as recommended actions.
-            - Deduplicate similar actions.
+            - Recommended actions must be short, imperative action items (e.g. "Replace string concatenation with parameterized queries").
+            - Synthesize and deduplicate similar actions across reviewers — do not copy findings verbatim, but DO extract actions from them.
+            - Only exclude actions that are purely praise with no actionable improvement.
             - Prioritize critical issues first.
-            - Keep recommended actions short and practical.
+            - Always produce at least one recommended action if any reviewer score is below 7.
             """,
 
             tools = new[]
             {
             new
             {
-                name = "aggregate_code_review",
+                name = AggregatorToolName,
                 description = "Creates the final aggregated code review response.",
                 input_schema = new
                 {

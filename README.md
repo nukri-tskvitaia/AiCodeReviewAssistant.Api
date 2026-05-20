@@ -96,7 +96,7 @@ Controller
 
 # Technologies Used
 
-- ASP.NET Core 9 Web API
+- ASP.NET Core 8 Web API
 - C#
 - Anthropic Claude API
 - Swagger / OpenAPI
